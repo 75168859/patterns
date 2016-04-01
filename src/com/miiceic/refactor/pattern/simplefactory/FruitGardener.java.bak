@@ -1,0 +1,37 @@
+package com.miiceic.refactor.pattern.simplefactory;
+public class FruitGardener
+{
+    public static Fruit factory(String which) throws BadFruitException
+    {
+       /* if (which.equalsIgnoreCase("apple"))
+        {
+            return new Apple();
+        }
+        else if (which.equalsIgnoreCase("strawberry"))
+        {
+            return new Strawberry();
+        }
+        else if (which.equalsIgnoreCase("grape"))
+        {
+            return new Grape();
+        }
+        else
+        {
+         	throw new BadFruitException("Bad fruit request");
+        }*/
+    	try {
+			Fruit fruit = (Fruit) Class.forName(which).newInstance();
+		    return fruit;
+    	} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
+    }
+}
